@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+    mongo:
+        restart: unless-stopped
+        image: mongo:latest
+        command: mongod
+        volumes:
+            - ~/Downloads/Gitlab/simple-stack/dump:/data/db/simple-stack
+        ports:
+            - '27017-27019:27017-27019'
+    node:
+        image: node:17.0.1
+        command: npm run start:dev
+        environment:
+            - TZ=Europe/Paris
+        volumes:
+            - .:/app
+            - ./_logs/node:/home/node/.npm/_logs
+        working_dir: /app
+        ports:
+            - '4555:4555'
+        expose:
+            - 4555
+volumes:
+    mongo_data:
+        driver: local

@@ -1,0 +1,29 @@
+{
+  "name": "simple-stack",
+  "version": "1.0.0",
+  "description": "A simple stack to start working",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node index",
+    "start:dev": "nodemon --delay 1500ms --watch 'server/**/*' server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaitreManuel/simple-stack.git"
+  },
+  "author": "Trystan Eveno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaitreManuel/simple-stack/issues"
+  },
+  "homepage": "https://github.com/MaitreManuel/simple-stack#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "socket.io": "^4.3.1",
+    "socket.io-client": "^4.3.2"
+  }
+}

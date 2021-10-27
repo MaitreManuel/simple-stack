@@ -1,15 +1,18 @@
-const SERVER_PORT = process.env.PORT || 4555;
-// const DB_LINK = 'mongodb+srv://cluster0.uwbvh.mongodb.net/beealive';
+// Importantion des variables d'environnement
+require('dotenv').config();
 
-const express = require('express');
-const app = express();
-const server = require('http').Server(app);
 const bodyParser = require('body-parser');
+const express = require('express');
 // const mongoose = require('mongoose');
 
+const APP = express();
+// const DB_LINK = 'mongodb+srv://cluster0.uwbvh.mongodb.net/beealive';
+const SERVER = require('http').Server(APP);
+const SERVER_PORT = process.env.PORT || 4555;
+
 // Plug-in pour parser les requêtes POST et récupérer les champs d'une requête
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+APP.use(bodyParser.json());
+APP.use(bodyParser.urlencoded({ extended: true }));
 
 // mongoose.connect(DB_LINK, {
 //   auth: {
@@ -34,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // });
 
 // Configuration des headers pour accepter les requetes
-app.use((req, res, next) => {
+APP.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', false);
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -42,7 +45,12 @@ app.use((req, res, next) => {
   next();
 });
 
-server.listen(SERVER_PORT, () => {
+// Route principale du serveur Node pour tester s'il fonctionne
+APP.get('/', (req, res) => {
+  res.send('Path /');
+});
+
+SERVER.listen(SERVER_PORT, () => {
   console.log(`Server servin' from good ol' port ${ SERVER_PORT }`); // eslint-disable-line no-console
-  console.log(new Date().toUTCString()); // eslint-disable-line no-console
+  console.log(new Date().toString()); // eslint-disable-line no-console
 });

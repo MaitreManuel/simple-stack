@@ -181,7 +181,14 @@ const config = {
       filename: '[name].[contenthash].css'
     }),
     new VueLoaderPlugin()
-  ]
+  ],
+  resolve: {
+    // Permet de simplifier l'appelle d'une ressource
+    alias: {
+      Class: path.resolve('client', 'src/class'),
+      Components: path.resolve('client', 'src/vue')
+    }
+  }
 };
 
 module.exports = config;

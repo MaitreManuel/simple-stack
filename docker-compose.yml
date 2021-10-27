@@ -6,6 +6,7 @@ services:
         image: mongo:latest
         command: mongod
         volumes:
+            - mongo_data:/data/db
             - ~/Downloads/Gitlab/simple-stack/dump:/data/db/simple-stack
         ports:
             - '27017-27019:27017-27019'

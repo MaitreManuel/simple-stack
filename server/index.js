@@ -3,10 +3,12 @@ require('dotenv').config();
 
 const bodyParser = require('body-parser');
 const express = require('express');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
+
+const Datetime = require('./helpers/Date').datetime();
 
 const APP = express();
-// const DB_LINK = 'mongodb+srv://cluster0.uwbvh.mongodb.net/beealive';
+const MONGO_URL = process.env.MONGO_URL || process.env.MONGODB_ADDON_URI;
 const SERVER = require('http').Server(APP);
 const SERVER_PORT = process.env.PORT || 4555;
 
@@ -14,27 +16,23 @@ const SERVER_PORT = process.env.PORT || 4555;
 APP.use(bodyParser.json());
 APP.use(bodyParser.urlencoded({ extended: true }));
 
-// mongoose.connect(DB_LINK, {
-//   auth: {
-//     authSource: 'admin',
-//     username: 'bee',
-//     password: 'beerules'
-//   },
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
+mongoose.connect(MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
-// mongoose.connection.on('connected', () => {
-//   console.warn('Mongoose connected');
-// });
-//
-// mongoose.connection.on('disconnected', () => {
-//   console.error('Mongoose disconnected');
-// });
-//
-// mongoose.connection.on('error', () => {
-//   console.error('Mongoose connection error');
-// });
+
+mongoose.connection.on('connected', () => {
+  console.warn('Mongoose connected');
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.error('Mongoose disconnected');
+});
+
+mongoose.connection.on('error', () => {
+  console.error('Mongoose connection error');
+});
 
 // Configuration des headers pour accepter les requetes
 APP.use((req, res, next) => {
@@ -50,7 +48,10 @@ APP.get('/', (req, res) => {
   res.send('Path /');
 });
 
+// Importation de l'initialisation des sockets
+require('./helpers/Socket').listen(SERVER, APP);
+
 SERVER.listen(SERVER_PORT, () => {
   console.log(`Server servin' from good ol' port ${ SERVER_PORT }`); // eslint-disable-line no-console
-  console.log(new Date().toString()); // eslint-disable-line no-console
+  console.log(Datetime); // eslint-disable-line no-console
 });

@@ -5,7 +5,7 @@ domready(() => {
   const SELECTOR = document.querySelector('#vue-root');
 
   if (SELECTOR) {
-    const MAIN = () => import('./src/Main.vue');
+    const MAIN = () => import('./src/vue/Main.vue');
 
     const APA_VUE = new Vue({
       render: h => h(MAIN)

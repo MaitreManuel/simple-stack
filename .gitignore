@@ -7,4 +7,5 @@
 stats.json
 .idea/
 .vscode/
+client/dist/*
 node_modules/

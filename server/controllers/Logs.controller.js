@@ -10,5 +10,9 @@ module.exports = {
       console.log('SAVED');
       console.log(log);
     });
+  },
+
+  getLogs: () => {
+
   }
 };

@@ -17,6 +17,7 @@
 
     created () {
       this.socket.emit('reload');
+      this.socket.emit('wantToGetLogs');
 
       this.socket.on('reloaded', () => {
         console.log('rechargé !')
@@ -24,3 +25,20 @@
     }
   };
 </script>
+
+<style lang="scss" scoped>
+  h1 {
+    color: blue;
+
+    animation: gyro alternate .3s infinite;
+  }
+
+  @keyframes gyro {
+    from {
+      color: blue;
+    }
+    to {
+      color: red;
+    }
+  }
+</style>

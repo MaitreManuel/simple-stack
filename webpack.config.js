@@ -168,7 +168,7 @@ const config = {
     // Génère un fichier HTML avec les sources liées
     new HtmlWebpackPlugin({
       templateContent: `
-        <html>
+        <html lang="fr">
           <body>
             <div id="vue-root"></div>
           </body>
@@ -185,8 +185,8 @@ const config = {
   resolve: {
     // Permet de simplifier l'appelle d'une ressource
     alias: {
-      Class: path.resolve('client', 'src/class'),
-      Components: path.resolve('client', 'src/vue')
+      Class: path.resolve(__dirname, 'client/src/class'),
+      Vue: path.resolve(__dirname, 'client/src/vue')
     }
   }
 };

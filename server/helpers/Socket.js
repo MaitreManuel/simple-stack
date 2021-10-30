@@ -1,8 +1,8 @@
 const expressStatusMonitor = require('express-status-monitor');
 
-const AddLog = require('../controllers/Logs.controller').addLog;
 const Bucket = require('./Bucket');
 const Datetime = require('./Date').datetime();
+const Logs = require('../controllers/Logs.controller');
 
 let io;
 
@@ -23,6 +23,9 @@ module.exports = {
 
     // Ecoute du socket 'connection' pour initialiser les sockets d'écoute
     io.on('connection', socket => {
+      socket.on('wantToGetLogs', () => {
+        socket.on('getLogs', Logs.getLogs());
+      });
       // Socket d'écoute pour enregistrer les adresses de socket, les identifiants de connection
       // et les identifiants des utilisateurs
       socket.on('reload', () => {
@@ -32,7 +35,7 @@ module.exports = {
           socket: socket.id
         };
 
-        AddLog({
+        Logs.addLog({
           date: USER.date,
           idUser: USER.idUser,
           type: 'reload'

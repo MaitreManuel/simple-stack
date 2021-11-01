@@ -24,6 +24,8 @@ mongoose.connect(MONGO_URL, {
 
 mongoose.connection.on('connected', () => {
   console.warn('Mongoose connected');
+
+  require('./routes/Logs.route').init(APP);
 });
 
 mongoose.connection.on('disconnected', () => {

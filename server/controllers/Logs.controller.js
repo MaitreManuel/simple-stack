@@ -4,15 +4,19 @@ module.exports = {
   addLog: log => {
     LogsModel.create(log, (error, log) => {
       if (error) {
-        console.error(error);
+        console.error(error, log);
       }
-
-      console.log('SAVED');
-      console.log(log);
     });
   },
 
-  getLogs: () => {
+  getLogs: () => new Promise((resolve, reject) => {
+    LogsModel.find({}, (error, logs) => {
+      if (error) {
+        console.error(error);
+        reject(error);
+      }
 
-  }
+      resolve(logs);
+    });
+  })
 };

@@ -35,5 +35,9 @@ class LogsClass {
   }
 }
 
+LOGS_SCHEMA.pre('find', () => {
+  console.log('someone is gettings logs');
+});
+
 LOGS_SCHEMA.loadClass(LogsClass);
 module.exports = mongoose.model('Logs', LOGS_SCHEMA);

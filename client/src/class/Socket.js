@@ -7,7 +7,7 @@ class Socket {
     }
 
     Socket.instance = this;
-    this._socket = io(`${ process.env.NODE_URL }:${ process.env.NODE_PORT }/`);
+    this._socket = io(`${ process.env.NODE_URL }`);
 
     return this;
   }

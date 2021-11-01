@@ -37,7 +37,7 @@
       getLogs () {
         this.axios({
           method: 'GET',
-          url: 'http://0.0.0.0:4555/logs'
+          url: `${ process.env.NODE_URL }/logs`
         })
           .then(results => results.data)
           .then(results => {

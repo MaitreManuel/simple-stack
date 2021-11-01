@@ -16,10 +16,6 @@ const SERVER_PORT = process.env.PORT || 4555;
 APP.use(bodyParser.json());
 APP.use(bodyParser.urlencoded({ extended: true }));
 
-console.log(process.env.MONGO_URL);
-console.log(process.env.MONGO_USER);
-console.log(process.env.MONGO_PASSWORD);
-
 mongoose.connect(MONGO_URL, {
   auth: {
     authSource: 'admin',

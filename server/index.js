@@ -1,4 +1,4 @@
-// Importantion des variables d'environnement
+// Importation des variables d'environnement
 require('dotenv').config();
 
 const bodyParser = require('body-parser');
@@ -17,6 +17,11 @@ APP.use(bodyParser.json());
 APP.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect(MONGO_URL, {
+  auth: {
+    authSource: 'admin',
+    username: 'bee',
+    password: 'beerules'
+  },
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

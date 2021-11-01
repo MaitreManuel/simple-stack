@@ -7,7 +7,7 @@
     "build": "NODE_ENV=production webpack --mode=production",
     "dev": "NODE_ENV=development webpack --mode=development",
     "server": "NODE_ENV=development webpack-dev-server --mode=development",
-    "start": "node index",
+    "start": "node server/index.js",
     "start:dev": "nodemon --delay 1500ms --watch 'server/**/*' server/index.js",
     "watch": "NODE_ENV=development webpack --mode=development --watch"
   },

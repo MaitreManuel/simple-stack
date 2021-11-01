@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const Datetime = require('./helpers/Date').datetime();
 
 const APP = express();
-const MONGO_URL = process.env.MONGO_URL || process.env.MONGODB_ADDON_URI;
+const MONGO_URL = process.env.MONGO_URL;
 const SERVER = require('http').Server(APP);
 const SERVER_PORT = process.env.PORT || 4555;
 
@@ -19,8 +19,8 @@ APP.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect(MONGO_URL, {
   auth: {
     authSource: 'admin',
-    username: 'bee',
-    password: 'beerules'
+    username: process.env.MONGO_USER,
+    password: process.env.MONGO_PASSWORD
   },
   useNewUrlParser: true,
   useUnifiedTopology: true

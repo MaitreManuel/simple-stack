@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/MaitreManuel/simple-stack#readme",
   "devDependencies": {
+    "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.15.8",
     "babel-loader": "^8.2.3",
     "clean-terminal-webpack-plugin": "^3.0.0",
